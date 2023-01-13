@@ -3,7 +3,7 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 
 
-class Rejection extends StatelessWidget {
+class Acceptance extends StatelessWidget {
   //const Rejection({super.key});
   final _key = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
@@ -24,7 +24,7 @@ class Rejection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Rejected Proposal Mail'),),
+        appBar: AppBar(title: const Text('Accepted Proposal Mail'),),
         body: Container(
           padding: const EdgeInsets.all(10),
           child: Form(
@@ -43,14 +43,14 @@ class Rejection extends StatelessWidget {
                   controller: subject,
                   decoration: const InputDecoration(
                     hintText: "Please Enter Subject",
-                    labelText: "Proposal Rejection.",
+                    labelText: "Proposal Acceptance",
                   ),
                 ),
                 TextFormField(
                   controller: body,
                   decoration: const InputDecoration(
                     hintText: "Please Enter Text",
-                    labelText: "Your Proposal have been rejected due to foloowing reasons: .",
+                    labelText: "Your Proposal have been accepted. Do check the events timetable.",
                   ),
                   minLines: 5,
                   maxLines: 8,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rejection_email/rejection.dart';
+import 'package:rejection_email/clicked_proposal.dart';
+import 'clicked_proposal.dart';
 
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
  Widget build(BuildContext context) {
     return MaterialApp(
-        home: Rejection()
+      debugShowCheckedModeBanner: false,
+        home: Clicked_Proposal()
     );
   }
 }
