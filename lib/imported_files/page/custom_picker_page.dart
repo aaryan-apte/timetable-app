@@ -1,7 +1,8 @@
-import 'package:cupertino_datepicker_example/utils.dart';
-import 'package:cupertino_datepicker_example/widget/button_widget.dart';
+// import 'package:loginuicolors/widget/button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:slot_allot/imported_files/utils.dart';
 
 class CustomPickerPage extends StatefulWidget {
   @override
@@ -12,14 +13,15 @@ class _CustomPickerPageState extends State<CustomPickerPage> {
   int index = 0;
 
   static List<String> values = [
-    'Grapefruit',
-    'Apple',
-    'Orange',
-    'Avocado',
-    'Blueberries',
-    'Mango',
-    'Strawberries',
-    'Lemons',
+    'Football Ground',
+    'Cricket Ground',
+    'Quadrangle',
+    'TPO Hall',
+    'Mechanial SH',
+    'Civil SH',
+    'Auditorium',
+    'DL Classroom',
+    'AL Classroom'
   ];
 
   @override
@@ -74,4 +76,31 @@ class _CustomPickerPageState extends State<CustomPickerPage> {
           ),
         ),
       );
+}
+
+
+class ButtonWidget extends StatelessWidget {
+  final VoidCallback onClicked;
+
+  const ButtonWidget({
+    Key? key,
+    required this.onClicked,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => ElevatedButton(
+    style: ElevatedButton.styleFrom(minimumSize: Size(100, 42)),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.more_time, size: 28),
+        const SizedBox(width: 8),
+        Text(
+          'Show Picker',
+          style: TextStyle(fontSize: 20),
+        ),
+      ],
+    ),
+    onPressed: onClicked,
+  );
 }

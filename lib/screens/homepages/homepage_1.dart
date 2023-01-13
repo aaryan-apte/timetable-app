@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:slot_allot/imported_files/loginFaculty.dart';
+import 'package:slot_allot/imported_files/registerFaculty.dart';
+import 'package:slot_allot/screens/signup_login/login_gs.dart';
+import 'package:slot_allot/screens/signup_login/signup_faculty.dart';
+
+import '../../imported_files/registerGS.dart';
+import '../../imported_files/widget/loginGS.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -127,8 +133,14 @@ class NavBar extends StatelessWidget {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Manasi Kulkarni', style: TextStyle(fontSize: 18.0),),
-            accountEmail: Text('mukulkarni@ce.vjti.ac.in', style: TextStyle(fontSize: 18.0),),
+            accountName: Text(
+              'Manasi Kulkarni',
+              style: TextStyle(fontSize: 18.0),
+            ),
+            accountEmail: Text(
+              'mukulkarni@ce.vjti.ac.in',
+              style: TextStyle(fontSize: 18.0),
+            ),
           ),
           SizedBox(
             height: 10.0,
@@ -145,23 +157,83 @@ class NavBar extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginFaculty(),
+                  ),
+                );
+              }),
           SizedBox(
             height: 10.0,
           ),
           TextButton(
-              onPressed: () {},
-              child: Container(
-                margin: EdgeInsets.all(10.0),
-                child: ListTile(
-                  leading: Icon(Icons.mic),
-                  title: Text(
-                    'Login as GS',
-                    style:
-                        TextStyle(fontSize: 18.0, color: Colors.blueGrey[900]),
-                  ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginGS(),
                 ),
-              )),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              child: ListTile(
+                leading: Icon(Icons.mic),
+                title: Text(
+                  'Login as GS',
+                  style: TextStyle(fontSize: 18.0, color: Colors.blueGrey[900]),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          TextButton(
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              child: ListTile(
+                leading: Icon(Icons.book_rounded),
+                title: Text(
+                  'Register as Faculty',
+                  style: TextStyle(fontSize: 18.0, color: Colors.blueGrey[900]),
+                ),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterFaculty(),
+                ),
+              );
+            },
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          TextButton(
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              child: ListTile(
+                leading: Icon(Icons.book_rounded),
+                title: Text(
+                  'Register as GS',
+                  style: TextStyle(fontSize: 18.0, color: Colors.blueGrey[900]),
+                ),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterGS(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

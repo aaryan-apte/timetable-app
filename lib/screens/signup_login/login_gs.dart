@@ -1,6 +1,4 @@
-// hare krishna
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 TextStyle homePageTextStyle = TextStyle(
@@ -20,7 +18,7 @@ class _GSLoginState extends State<GSLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.all(10.0),
           child: Column(
@@ -36,7 +34,35 @@ class _GSLoginState extends State<GSLogin> {
               SizedBox(
                 height: 40.0,
               ),
-              TextField()
+              Text(
+                'Welcome!',
+                style: TextStyle(
+                  color: Colors.blueGrey[900],
+                  fontSize: 20.0,
+                ),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  constraints:
+                  const BoxConstraints(maxWidth: 220.0),
+                  hintText: "Password",
+                  filled: true,
+                  fillColor: Colors.blueGrey[100],
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: "Username",
+                  filled: true,
+                  constraints: BoxConstraints(maxWidth: 220.0),
+                  fillColor: Colors.blueGrey[100],
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+              ),
             ],
           ),
         ),
