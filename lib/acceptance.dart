@@ -1,15 +1,49 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:http/http.dart' as http;
 
 
 
 class Acceptance extends StatelessWidget {
   //const Rejection({super.key});
-  final _key = GlobalKey<FormState>();
-  TextEditingController email = TextEditingController();
-  TextEditingController subject = TextEditingController();
-  TextEditingController body = TextEditingController();
+  final emailController = TextEditingController();
+  final subjectController = TextEditingController();
+  final messageController = TextEditingController();
 
+  Future EmailSend() async{
+    
+
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    const serviceId ='service_xr10to8';
+    const templateId ='template_941uypc';
+    const userId ='z4hV8Try9tz6UkJss';
+    final response = await http.post(
+      url,
+      headers:{
+        'origin': 'http://localhost',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'club_email': emailController.text, 
+          'user_subject': subjectController.text,
+          'user_message': messageController.text,
+        },
+      }),
+      );
+    return response.statusCode;
+
+  }
+
+  Widget message() {
+    return Container(
+      child: Text("Email sent successfully!")
+    );
+  }
 
   sendEmail(String subject, String body,String recipientemail) async{
     final Email email = Email(
@@ -28,11 +62,10 @@ class Acceptance extends StatelessWidget {
         body: Container(
           padding: const EdgeInsets.all(10),
           child: Form(
-            key: _key,
             child: Column(
               children: [
                 TextFormField(
-                  controller: email,
+                  controller: emailController,
                   // ignore: prefer_const_constructors
                   decoration: InputDecoration(
                      hintText: "Please Enter To Mail Address",
@@ -40,17 +73,18 @@ class Acceptance extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
-                  controller: subject,
+                  controller: subjectController,
                   decoration: const InputDecoration(
-                    hintText: "Please Enter Subject",
+                    //hintText: "Please Enter Subject",
                     labelText: "Proposal Acceptance",
                   ),
                 ),
                 TextFormField(
-                  controller: body,
+                  controller: messageController,
                   decoration: const InputDecoration(
-                    hintText: "Please Enter Text",
-                    labelText: "Your Proposal have been accepted. Do check the events timetable.",
+                    
+                    labelText: "Your proposal has been accepted."+ "\n" + "Kindly check the events timetable for the"+ "\n" + "confirmation."+ "\n" + "\n",
+                    hintText: "\n" + "\n"+ "Please Enter Text",
                   ),
                   minLines: 5,
                   maxLines: 8,
@@ -61,15 +95,15 @@ class Acceptance extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                      ElevatedButton(onPressed:(){
-                      _key.currentState!.save();
-                      print('${email.text}');
-                      sendEmail(subject.text, body.text, email.text);
+                      //sendEmail(subject.text, body.text, email.text);
+                      EmailSend();
                      }, 
                      child: const Text("Send Email")
+
                      )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
